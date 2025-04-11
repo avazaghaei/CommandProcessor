@@ -42,15 +42,41 @@ namespace CommandProcessor.Classes
 
     }
 
-    public class classDecrement()
+    public class classDecrement
     {
-        public void exec(int value)
+        private static int number;
+        public static int funcUserID
         {
-            value++;
+            get { return number; }
+            set { number = value; }
         }
-        public void undo(int value)
+
+        public void exec()
         {
-            value--;
+            number--;
+        }
+        public void undo()
+        {
+            number++;
+        }
+    }
+
+    public class classDouble
+    {
+        private static int number;
+        public static int funcUserID
+        {
+            get { return number; }
+            set { number = value; }
+        }
+
+        public void exec()
+        {
+            number *= 2;
+        }
+        public void undo()
+        {
+            number /= 2;
         }
     }
 }
