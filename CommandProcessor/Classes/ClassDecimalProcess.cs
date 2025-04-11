@@ -25,7 +25,7 @@ namespace CommandProcessor.Classes
     public static class classIncrement
     {
         private static int number;
-        public static int funcUserID
+        public static int funcNumber
         {
             get { return number; }
             set { number = value; }
@@ -45,7 +45,7 @@ namespace CommandProcessor.Classes
     public static class classDecrement
     {
         private static int number;
-        public static int funcUserID
+        public static int funcNumber
         {
             get { return number; }
             set { number = value; }
@@ -64,7 +64,7 @@ namespace CommandProcessor.Classes
     public static class classDouble
     {
         private static int number;
-        public static int funcUserID
+        public static int funcNumber
         {
             get { return number; }
             set { number = value; }
