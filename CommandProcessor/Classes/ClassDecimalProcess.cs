@@ -6,75 +6,75 @@ using System.Threading.Tasks;
 
 namespace CommandProcessor.Classes
 {
-    internal class ClassDecimalProcess
-    {
-        public static int sharedNumber { get; set; }
+    //internal class ClassDecimalProcess
+    //{
+    //    public static int sharedNumber { get; set; }
 
-        public ClassDecimalProcess(int initial)
-        {
-            sharedNumber = initial;
-        }
-    }
+    //    public ClassDecimalProcess(int initial)
+    //    {
+    //        sharedNumber = initial;
+    //    }
+    //}
 
-    public interface IDecimalProcess
-    {
-        void exec();
-        void undo();
-    }
+    //public interface IDecimalProcess
+    //{
+    //    void exec();
+    //    void undo();
+    //}
 
-    public class classIncrement : IDecimalProcess
+    public static class classIncrement
     {
-        private int number;
-        public int funcUserID
+        private static int number;
+        public static int funcUserID
         {
             get { return number; }
             set { number = value; }
         }
 
-        public void exec() 
+        public static void exec() 
         {
             number++;
         }
-        public void undo() 
+        public static void undo() 
         {
             number--;
         }
 
     }
 
-    public class classDecrement : IDecimalProcess
+    public static class classDecrement
     {
-        private int number;
-        public int funcUserID
+        private static int number;
+        public static int funcUserID
         {
             get { return number; }
             set { number = value; }
         }
 
-        public void exec()
+        public static void exec()
         {
             number--;
         }
-        public void undo()
+        public static void undo()
         {
             number++;
         }
     }
 
-    public class classDouble : IDecimalProcess
+    public static class classDouble
     {
-        private int number;
-        public int funcUserID
+        private static int number;
+        public static int funcUserID
         {
             get { return number; }
             set { number = value; }
         }
 
-        public void exec()
+        public static void exec()
         {
             number *= 2;
         }
-        public void undo()
+        public static void undo()
         {
             number /= 2;
         }
