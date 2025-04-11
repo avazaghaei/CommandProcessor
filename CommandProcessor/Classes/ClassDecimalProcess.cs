@@ -6,77 +6,131 @@ using System.Threading.Tasks;
 
 namespace CommandProcessor.Classes
 {
-    //internal class ClassDecimalProcess
-    //{
-    //    public static int sharedNumber { get; set; }
-
-    //    public ClassDecimalProcess(int initial)
-    //    {
-    //        sharedNumber = initial;
-    //    }
-    //}
-
-    //public interface IDecimalProcess
-    //{
-    //    void exec();
-    //    void undo();
-    //}
-
-    public static class classIncrement
+    public class ClassDecimalProcess
     {
-        private static int number;
-        public static int funcNumber
+
+        private static ClassDecimalProcess theInstance = null;
+        public static ClassDecimalProcess getInstance()
         {
-            get { return number; }
-            set { number = value; }
+            if (theInstance == null)
+                theInstance = new ClassDecimalProcess();
+            return theInstance;
         }
 
-        public static void exec() 
+        private int sharedNumber;
+        public int funcSharedNumber
         {
-            number++;
+            get { return sharedNumber; }
+            set { sharedNumber = value; }
         }
-        public static void undo() 
+    }
+
+    public interface IDecimalProcess
+    {
+        void exec();
+        void undo();
+    }
+
+    public class classIncrement : IDecimalProcess
+    {
+        private int internalNumber;
+
+        private static classIncrement theInstance = null;
+        public static classIncrement getInstance()
         {
-            number--;
+            if (theInstance == null)
+                theInstance = new classIncrement();
+            return theInstance;
+        }
+        public void exec() 
+        {
+            ClassDecimalProcess clsDecimalProcess = ClassDecimalProcess.getInstance();
+
+            internalNumber = clsDecimalProcess.funcSharedNumber;
+
+            internalNumber++;
+
+            clsDecimalProcess.funcSharedNumber = internalNumber;
+
+        }
+        public void undo() 
+        {
+            ClassDecimalProcess clsDecimalProcess = ClassDecimalProcess.getInstance();
+
+            internalNumber = clsDecimalProcess.funcSharedNumber;
+
+            internalNumber--;
+
+            clsDecimalProcess.funcSharedNumber = internalNumber;
         }
 
     }
 
-    public static class classDecrement
+    public class classDecrement : IDecimalProcess
     {
-        private static int number;
-        public static int funcNumber
-        {
-            get { return number; }
-            set { number = value; }
-        }
+        private int internalNumber;
 
-        public static void exec()
+        private static classDecrement theInstance = null;
+        public static classDecrement getInstance()
         {
-            number--;
+            if (theInstance == null)
+                theInstance = new classDecrement();
+            return theInstance;
         }
-        public static void undo()
+        public void exec()
         {
-            number++;
+            ClassDecimalProcess clsDecimalProcess = ClassDecimalProcess.getInstance();
+
+            internalNumber = clsDecimalProcess.funcSharedNumber;
+
+            internalNumber--;
+
+            clsDecimalProcess.funcSharedNumber = internalNumber;
+
+        }
+        public void undo()
+        {
+            ClassDecimalProcess clsDecimalProcess = ClassDecimalProcess.getInstance();
+
+            internalNumber = clsDecimalProcess.funcSharedNumber;
+
+            internalNumber++;
+
+            clsDecimalProcess.funcSharedNumber = internalNumber;
         }
     }
 
-    public static class classDouble
+    public class classDouble : IDecimalProcess
     {
-        private static int number;
-        public static int funcNumber
-        {
-            get { return number; }
-            set { number = value; }
-        }
+        private int internalNumber;
 
-        public static void exec()
+        private static classDouble theInstance = null;
+        public static classDouble getInstance()
         {
-            number *= 2;
+            if (theInstance == null)
+                theInstance = new classDouble();
+            return theInstance;
         }
-        public static void undo()
+        public void exec()
         {
-            number /= 2;
+            ClassDecimalProcess clsDecimalProcess = ClassDecimalProcess.getInstance();
+
+            internalNumber = clsDecimalProcess.funcSharedNumber;
+
+            internalNumber *= 2;
+
+            clsDecimalProcess.funcSharedNumber = internalNumber;
+
+        }
+        public void undo()
+        {
+            ClassDecimalProcess clsDecimalProcess = ClassDecimalProcess.getInstance();
+
+            internalNumber = clsDecimalProcess.funcSharedNumber;
+
+            internalNumber /= 2;
+
+            clsDecimalProcess.funcSharedNumber = internalNumber;
         }
     }
 }
