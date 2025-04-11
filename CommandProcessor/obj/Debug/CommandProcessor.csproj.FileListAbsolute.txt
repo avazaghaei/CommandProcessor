@@ -1,0 +1,7 @@
+D:\PhD\skills\Git\C#\ekvipTask\CommandProcessor\CommandProcessor\bin\Debug\CommandProcessor.exe
+D:\PhD\skills\Git\C#\ekvipTask\CommandProcessor\CommandProcessor\bin\Debug\CommandProcessor.exe.config
+D:\PhD\skills\Git\C#\ekvipTask\CommandProcessor\CommandProcessor\obj\Debug\CommandProcessor.csproj.AssemblyReference.cache
+D:\PhD\skills\Git\C#\ekvipTask\CommandProcessor\CommandProcessor\obj\Debug\CommandProcessor.csproj.CoreCompileInputs.cache
+D:\PhD\skills\Git\C#\ekvipTask\CommandProcessor\CommandProcessor\obj\Debug\CommandProcessor.exe
+D:\PhD\skills\Git\C#\ekvipTask\CommandProcessor\CommandProcessor\obj\Debug\CommandProcessor.pdb
+D:\PhD\skills\Git\C#\ekvipTask\CommandProcessor\CommandProcessor\bin\Debug\CommandProcessor.pdb
