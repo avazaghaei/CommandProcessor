@@ -37,9 +37,9 @@ namespace CommandProcessor
                     case "double":
                         command = Classes.classDouble.getInstance();
                         break;
-                    //case "randadd":
-                    //    command = new RandAddCommand(context);
-                    //    break;
+                    case "randadd":
+                        command = new Classes.classRandomAdd();
+                        break;
                     case "undo":
                         if (historyCommand.Count > 0)
                         {
