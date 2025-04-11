@@ -133,4 +133,32 @@ namespace CommandProcessor.Classes
             clsDecimalProcess.funcSharedNumber = internalNumber;
         }
     }
+    public class classRandomAdd : IDecimalProcess
+    {
+        private int randomAmount;
+        private int internalNumber;
+        public void exec()
+        {
+            ClassDecimalProcess clsDecimalProcess = ClassDecimalProcess.getInstance();
+
+            internalNumber = clsDecimalProcess.funcSharedNumber;
+
+            Random rnd = new Random();
+            randomAmount = rnd.Next(1, 10);
+            internalNumber += randomAmount;
+
+            clsDecimalProcess.funcSharedNumber = internalNumber;
+
+        }
+        public void undo()
+        {
+            ClassDecimalProcess clsDecimalProcess = ClassDecimalProcess.getInstance();
+
+            internalNumber = clsDecimalProcess.funcSharedNumber;
+
+            internalNumber -= randomAmount;
+
+            clsDecimalProcess.funcSharedNumber = internalNumber;
+        }
+    }
 }
