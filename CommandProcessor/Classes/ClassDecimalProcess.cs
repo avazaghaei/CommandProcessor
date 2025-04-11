@@ -184,76 +184,135 @@ namespace CommandProcessor.Classes
             clsDecimalProcess.funcSharedNumber = internalNumber;
 
         }
+
+        /// <summary>
+        /// Undoes the decrement command by increasing the shared number by 1.
+        /// </summary>
         public void undo()
         {
             ClassDecimalProcess clsDecimalProcess = ClassDecimalProcess.getInstance();
 
+            // Retrieve the current value.
             internalNumber = clsDecimalProcess.funcSharedNumber;
 
+            // Reverse the decrement.
             internalNumber++;
 
+            // Update the shared value.
             clsDecimalProcess.funcSharedNumber = internalNumber;
         }
     }
 
+    /// <summary>
+    /// Implements the double command. This command doubles the shared number.
+    /// The undo operation reverses the command by dividing the number by two (assuming an even number).
+    /// Uses a singleton instance for efficiency.
+    /// </summary>
     public class classDouble : IDecimalProcess
     {
+        // Temporary storage for the number.
         private int internalNumber;
 
+        // Singleton instance of classDouble.
         private static classDouble theInstance = null;
+
+        /// <summary>
+        /// Gets the singleton instance of classDouble.
+        /// </summary>
+        /// <returns>The singleton instance of classDouble.</returns>
         public static classDouble getInstance()
         {
             if (theInstance == null)
                 theInstance = new classDouble();
             return theInstance;
         }
+
+        /// <summary>
+        /// Executes the command by doubling the shared number.
+        /// </summary>
         public void exec()
         {
             ClassDecimalProcess clsDecimalProcess = ClassDecimalProcess.getInstance();
 
+            // Get current value.
             internalNumber = clsDecimalProcess.funcSharedNumber;
 
+            // Double the value.
             internalNumber *= 2;
 
+            // Save the new value.
             clsDecimalProcess.funcSharedNumber = internalNumber;
 
         }
+
+        /// <summary>
+        /// Undoes the doubling by halving the shared number.
+        /// Assumes the original value was even.
+        /// </summary>
         public void undo()
         {
             ClassDecimalProcess clsDecimalProcess = ClassDecimalProcess.getInstance();
 
+            // Retrieve the doubled value.
             internalNumber = clsDecimalProcess.funcSharedNumber;
 
+            // Reverse doubling by halving.
             internalNumber /= 2;
 
+            // Store the reverted value.
             clsDecimalProcess.funcSharedNumber = internalNumber;
         }
     }
+
+    /// <summary>
+    /// Implements the random addition command. This command adds a randomly generated integer (between 1 and 9) to the shared number.
+    /// The random addition value is stored for the purpose of properly undoing the operation.
+    /// Unlike other commands, this class is not implemented as a singleton since it relies on per-execution randomness.
+    /// </summary>
     public class classRandomAdd : IDecimalProcess
     {
+        // Stores the random value added during execution to enable accurate undoing.
         private int randomAmount;
+
+        // Temporary storage for the current number.
         private int internalNumber;
+
+        /// <summary>
+        /// Executes the random add command by generating a random number and adding it to the shared number.
+        /// </summary>
         public void exec()
         {
             ClassDecimalProcess clsDecimalProcess = ClassDecimalProcess.getInstance();
 
+            // Capture the current shared number.
             internalNumber = clsDecimalProcess.funcSharedNumber;
 
+            // Generate a random number between 1 and 9.
             Random rnd = new Random();
             randomAmount = rnd.Next(1, 10);
+
+            // Add the random number.
             internalNumber += randomAmount;
 
+            // Update the shared value.
             clsDecimalProcess.funcSharedNumber = internalNumber;
 
         }
+
+        /// <summary>
+        /// Undoes the random addition by subtracting the previously added random number from the shared number.
+        /// </summary>
         public void undo()
         {
             ClassDecimalProcess clsDecimalProcess = ClassDecimalProcess.getInstance();
 
+            // Retrieve the modified value.
             internalNumber = clsDecimalProcess.funcSharedNumber;
 
+            // Reverse the addition by subtracting the random number.
             internalNumber -= randomAmount;
 
+            // Update the shared value.
             clsDecimalProcess.funcSharedNumber = internalNumber;
 
         }
