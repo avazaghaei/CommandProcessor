@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\PhD\\skills\\Git\\C#\\ekvipTask\\CommandProcessor\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5507406A-62AD-4A98-937F-0B464261529A}|CommandProcessor\\CommandProcessor.csproj|d:\\phd\\skills\\git\\c#\\ekviptask\\commandprocessor\\commandprocessor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5507406A-62AD-4A98-937F-0B464261529A}|CommandProcessor\\CommandProcessor.csproj|solutionrelative:commandprocessor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\PhD\\skills\\Git\\C#\\ekvipTask\\CommandProcessor\\CommandProcessor\\Program.cs",
+              "RelativeDocumentMoniker": "CommandProcessor\\Program.cs",
+              "ToolTip": "D:\\PhD\\skills\\Git\\C#\\ekvipTask\\CommandProcessor\\CommandProcessor\\Program.cs",
+              "RelativeToolTip": "CommandProcessor\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T08:31:26.527Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
