@@ -22,10 +22,10 @@ namespace CommandProcessor.Classes
         void undo();
     }
 
-    public class classIncrement
+    public class classIncrement : IDecimalProcess
     {
-        private static int number;
-        public static int funcUserID
+        private int number;
+        public int funcUserID
         {
             get { return number; }
             set { number = value; }
@@ -42,10 +42,10 @@ namespace CommandProcessor.Classes
 
     }
 
-    public class classDecrement
+    public class classDecrement : IDecimalProcess
     {
-        private static int number;
-        public static int funcUserID
+        private int number;
+        public int funcUserID
         {
             get { return number; }
             set { number = value; }
@@ -61,10 +61,10 @@ namespace CommandProcessor.Classes
         }
     }
 
-    public class classDouble
+    public class classDouble : IDecimalProcess
     {
-        private static int number;
-        public static int funcUserID
+        private int number;
+        public int funcUserID
         {
             get { return number; }
             set { number = value; }
