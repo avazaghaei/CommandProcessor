@@ -48,7 +48,10 @@ namespace CommandProcessor
             // Create a stack to store command instances for enabling undo functionality.
             Stack<Classes.IDecimalProcess> commandHistory = new Stack<Classes.IDecimalProcess>();
 
-            
+            Stack<int> NumberHistory = new Stack<int>();
+            NumberHistory.Push(decimalProcess.funcSharedNumber);
+
+
             Console.WriteLine("the initial value is : " + decimalProcess.funcSharedNumber);
             string menu = "enter your command or its number:" + Environment.NewLine +
                           "1- increment" + Environment.NewLine +
@@ -65,6 +68,7 @@ namespace CommandProcessor
                     //Console
                     Console.ForegroundColor = ConsoleColor.Blue;
 
+                    Console.WriteLine();
                     Console.WriteLine(menu);
 
                     input = Console.ReadLine()?.Trim().ToLower();
@@ -95,9 +99,14 @@ namespace CommandProcessor
                     if (commandHistory.Count > 0)
                     {
                         Classes.IDecimalProcess lastCommand = commandHistory.Pop();
+                        NumberHistory.Pop();
                         lastCommand.undo();
                         // Output the updated shared number after undoing the command.
-                        Console.WriteLine(decimalProcess.funcSharedNumber);
+                        for (int i = commandHistory.Count - 1; i >= 0; i--)
+                        {
+                            Console.Write(NumberHistory.ElementAt(i));
+                            Console.Write(" , ");
+                        }
                         continue;
                     }
                     else
@@ -117,8 +126,15 @@ namespace CommandProcessor
                 // Push the command onto the history stack for potential future undo.
                 commandHistory.Push(command);
 
+                // Push the number onto the history stack for performing as a stck on the output
+                NumberHistory.Push(decimalProcess.funcSharedNumber);
+
                 // Output the updated shared number after executing the command.
-                Console.WriteLine(decimalProcess.funcSharedNumber);
+                for (int i = commandHistory.Count - 1; i >= 0; i--)
+                {
+                    Console.Write(NumberHistory.ElementAt(i));
+                    Console.Write(" , ");
+                }
             }
         }
     }
