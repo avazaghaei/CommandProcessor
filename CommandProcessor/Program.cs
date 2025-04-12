@@ -46,52 +46,97 @@ namespace CommandProcessor
             decimalProcess.funcSharedNumber = rnd.Next(1, 10);
 
             // Create a stack to store command instances for enabling undo functionality.
-            Stack<Classes.IDecimalProcess> historyCommand = new Stack<Classes.IDecimalProcess>();
+            Stack<Classes.IDecimalProcess> commandHistory = new Stack<Classes.IDecimalProcess>();
 
+            Console.WriteLine("the initila value is : " + decimalProcess.funcSharedNumber);
+            string menu = "enter your command or its number:" + Environment.NewLine +
+                          "1- increment" + Environment.NewLine +
+                          "2- decrement" + Environment.NewLine +
+                          "3- double" + Environment.NewLine +
+                          "4- randadd" + Environment.NewLine +
+                          "5- undo";
             while (true)
             {
-                Console.Write("Enter command (increment, decrement, double, randadd, undo): ");
+                Console.WriteLine(menu);
                 string input = Console.ReadLine()?.Trim().ToLower();
-          
+
                 Classes.IDecimalProcess command = null;
-                switch (input)
+
+                if (input == "1" || input == "increment")
                 {
-                    case "increment":
-                        command = Classes.classIncrement.getInstance();
-                        break;
-                    case "decrement":
-                        command = Classes.classDecrement.getInstance();
-                        break;
-                    case "double":
-                        command = Classes.classDouble.getInstance();
-                        break;
-                    case "randadd":
-                        command = new Classes.classRandomAdd();
-                        break;
-                    case "undo":
-                        // If there are commands in history, perform the undo operation on the most recent one.
-                        if (historyCommand.Count > 0)
-                        {
-                            Classes.IDecimalProcess lastCommand = historyCommand.Pop();
-                            lastCommand.undo();
-                            // Output the updated shared number after undoing the command.
-                            Console.WriteLine(decimalProcess.funcSharedNumber);
-                            continue;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Nothing to undo.");
-                            continue;
-                        }
-                    default:
-                        Console.WriteLine("Invalid command.");
-                        continue;
+                    command = Classes.classIncrement.getInstance();
                 }
+                else if (input == "2" || input == "decrement")
+                {
+                    command = Classes.classDecrement.getInstance();
+                }
+                else if (input == "3" || input == "double")
+                {
+                    command = Classes.classDouble.getInstance();
+                }
+                else if (input == "4" || input == "random")
+                {
+                    command = new Classes.classRandomAdd();
+                }
+                else if (input == "undo")
+                {
+                    // If there are commands in history, perform the undo operation on the most recent one.
+                    if (commandHistory.Count > 0)
+                    {
+                        Classes.IDecimalProcess lastCommand = commandHistory.Pop();
+                        lastCommand.undo();
+                        // Output the updated shared number after undoing the command.
+                        Console.WriteLine(decimalProcess.funcSharedNumber);
+                    }
+                    else
+                    {
+                        Console.WriteLine("No commands to undo.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid command.");
+                }
+
+                //Classes.IDecimalProcess command = null;
+                //switch (input)
+                //{
+                //    case "increment":
+                //        command = Classes.classIncrement.getInstance();
+                //        break;
+                //    case "decrement":
+                //        command = Classes.classDecrement.getInstance();
+                //        break;
+                //    case "double":
+                //        command = Classes.classDouble.getInstance();
+                //        break;
+                //    case "randadd":
+                //        command = new Classes.classRandomAdd();
+                //        break;
+                //    case "undo":
+                //        // If there are commands in history, perform the undo operation on the most recent one.
+                //        if (historyCommand.Count > 0)
+                //        {
+                //            Classes.IDecimalProcess lastCommand = historyCommand.Pop();
+                //            lastCommand.undo();
+                //            // Output the updated shared number after undoing the command.
+                //            Console.WriteLine(decimalProcess.funcSharedNumber);
+                //            continue;
+                //        }
+                //        else
+                //        {
+                //            Console.WriteLine("Nothing to undo.");
+                //            continue;
+                //        }
+                //    default:
+                //        Console.WriteLine("Invalid command.");
+                //        continue;
+                //}
                 // Execute the chosen command.
                 command.exec();
 
                 // Push the command onto the history stack for potential future undo.
-                historyCommand.Push(command);
+                commandHistory.Push(command);
 
                 // Output the updated shared number after executing the command.
                 Console.WriteLine(decimalProcess.funcSharedNumber);
