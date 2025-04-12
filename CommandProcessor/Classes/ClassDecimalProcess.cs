@@ -36,6 +36,7 @@ namespace CommandProcessor.Classes
     /// </summary>
     public class ClassDecimalProcess
     {
+
         private static ClassDecimalProcess theInstance = null;
 
         /// <summary>
@@ -63,6 +64,7 @@ namespace CommandProcessor.Classes
         }
     }
 
+
     /// <summary>
     /// Defines the contract for decimal command processing.
     /// All command classes implementing this interface must provide execution and undo functionality.
@@ -80,6 +82,7 @@ namespace CommandProcessor.Classes
         void undo();
     }
 
+
     /// <summary>
     /// Implements the increment command. This command increases the shared number by one.
     /// Uses a singleton instance to avoid unnecessary object creation.
@@ -89,6 +92,7 @@ namespace CommandProcessor.Classes
         // Internal copy of the number for processing.
         private int internalNumber;
 
+        // Singleton instance of classIncrement.
         private static classIncrement theInstance = null;
 
         /// <summary>
@@ -101,6 +105,10 @@ namespace CommandProcessor.Classes
                 theInstance = new classIncrement();
             return theInstance;
         }
+
+        /// <summary>
+        /// Executes the increment command by increasing the shared number by 1.
+        /// </summary>
         public void exec() 
         {
             ClassDecimalProcess clsDecimalProcess = ClassDecimalProcess.getInstance();
@@ -115,6 +123,10 @@ namespace CommandProcessor.Classes
             clsDecimalProcess.funcSharedNumber = internalNumber;
 
         }
+
+        /// <summary>
+        /// Undoes the increment command by decreasing the shared number by 1.
+        /// </summary>
         public void undo() 
         {
             ClassDecimalProcess clsDecimalProcess = ClassDecimalProcess.getInstance();
@@ -130,6 +142,7 @@ namespace CommandProcessor.Classes
         }
 
     }
+
 
     /// <summary>
     /// Implements the decrement command. This command decreases the shared number by one.
