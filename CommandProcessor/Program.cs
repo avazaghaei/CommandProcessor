@@ -41,15 +41,18 @@ namespace CommandProcessor
             // Retrieve the singleton instance that holds the shared number.
             Classes.ClassDecimalProcess decimalProcess = Classes.ClassDecimalProcess.getInstance();
 
-            // Set the initial shared number.
-            Random rnd = new Random();
-            decimalProcess.funcSharedNumber = rnd.Next(1, 10);
 
             // Create a stack to store command instances for enabling undo functionality.
             Stack<Classes.IDecimalProcess> commandHistory = new Stack<Classes.IDecimalProcess>();
+            {
 
-            
-            Console.WriteLine("the initial value is : " + decimalProcess.funcSharedNumber);
+                // Set the initial shared number.
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write("Enter your initial nuber : ");
+
+                Console.ForegroundColor = ConsoleColor.White;
+                decimalProcess.funcSharedNumber = Convert.ToInt32(Console.ReadLine());
+            }
             string menu = "enter your command or its number:" + Environment.NewLine +
                           "1- increment" + Environment.NewLine +
                           "2- decrement" + Environment.NewLine +
@@ -57,8 +60,11 @@ namespace CommandProcessor
                           "4- randadd" + Environment.NewLine +
                           "5- undo";
 
+
             Classes.IDecimalProcess command = null;
+
             string input = "";
+
             while (true)
             {
                 {
