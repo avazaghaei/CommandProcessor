@@ -48,19 +48,30 @@ namespace CommandProcessor
             // Create a stack to store command instances for enabling undo functionality.
             Stack<Classes.IDecimalProcess> commandHistory = new Stack<Classes.IDecimalProcess>();
 
-            Console.WriteLine("the initila value is : " + decimalProcess.funcSharedNumber);
+            
+            Console.WriteLine("the initial value is : " + decimalProcess.funcSharedNumber);
             string menu = "enter your command or its number:" + Environment.NewLine +
                           "1- increment" + Environment.NewLine +
                           "2- decrement" + Environment.NewLine +
                           "3- double" + Environment.NewLine +
                           "4- randadd" + Environment.NewLine +
                           "5- undo";
+
+            Classes.IDecimalProcess command = null;
+            string input = "";
             while (true)
             {
-                Console.WriteLine(menu);
-                string input = Console.ReadLine()?.Trim().ToLower();
+                {
+                    //Console
+                    Console.ForegroundColor = ConsoleColor.Blue;
 
-                Classes.IDecimalProcess command = null;
+                    Console.WriteLine(menu);
+
+                    input = Console.ReadLine()?.Trim().ToLower();
+
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+
 
                 if (input == "1" || input == "increment")
                 {
@@ -78,7 +89,7 @@ namespace CommandProcessor
                 {
                     command = new Classes.classRandomAdd();
                 }
-                else if (input == "undo")
+                else if (input == "5" || input == "undo")
                 {
                     // If there are commands in history, perform the undo operation on the most recent one.
                     if (commandHistory.Count > 0)
@@ -87,51 +98,19 @@ namespace CommandProcessor
                         lastCommand.undo();
                         // Output the updated shared number after undoing the command.
                         Console.WriteLine(decimalProcess.funcSharedNumber);
+                        continue;
                     }
                     else
                     {
                         Console.WriteLine("No commands to undo.");
+                        continue;
                     }
                 }
                 else
                 {
                     Console.WriteLine("Invalid command.");
+                    continue;
                 }
-
-                //Classes.IDecimalProcess command = null;
-                //switch (input)
-                //{
-                //    case "increment":
-                //        command = Classes.classIncrement.getInstance();
-                //        break;
-                //    case "decrement":
-                //        command = Classes.classDecrement.getInstance();
-                //        break;
-                //    case "double":
-                //        command = Classes.classDouble.getInstance();
-                //        break;
-                //    case "randadd":
-                //        command = new Classes.classRandomAdd();
-                //        break;
-                //    case "undo":
-                //        // If there are commands in history, perform the undo operation on the most recent one.
-                //        if (historyCommand.Count > 0)
-                //        {
-                //            Classes.IDecimalProcess lastCommand = historyCommand.Pop();
-                //            lastCommand.undo();
-                //            // Output the updated shared number after undoing the command.
-                //            Console.WriteLine(decimalProcess.funcSharedNumber);
-                //            continue;
-                //        }
-                //        else
-                //        {
-                //            Console.WriteLine("Nothing to undo.");
-                //            continue;
-                //        }
-                //    default:
-                //        Console.WriteLine("Invalid command.");
-                //        continue;
-                //}
                 // Execute the chosen command.
                 command.exec();
 
