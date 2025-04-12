@@ -1,7 +1,7 @@
 ﻿/*
  * File: Program.cs
  * Description:
- *   This file serves as the entry point for the CommandProcessor application,
+ *   This file serves as the entry point for the Command Processor application,
  *   which implements a console-based command processing system for decimal values.
  *   It makes use of a shared context (ClassDecimalProcess) to store the number,
  *   and a stack to maintain command history for undo functionality.
@@ -35,27 +35,24 @@ namespace CommandProcessor
         /// Initializes the shared decimal context and command history,
         /// then enters a loop to continuously accept and process user commands.
         /// </summary>
-        /// <param name="args">Command-line arguments (not used in this application).</param>
         static void Main(string[] args)
         {
 
             // Retrieve the singleton instance that holds the shared number.
-            // Set the initial shared number to 5.
             Classes.ClassDecimalProcess decimalProcess = Classes.ClassDecimalProcess.getInstance();
-            decimalProcess.funcSharedNumber = 5;
+
+            // Set the initial shared number.
+            Random rnd = new Random();
+            decimalProcess.funcSharedNumber = rnd.Next(1, 10);
 
             // Create a stack to store command instances for enabling undo functionality.
             Stack<Classes.IDecimalProcess> historyCommand = new Stack<Classes.IDecimalProcess>();
 
-            // Main command processing loop - continues indefinitely until manually terminated.
             while (true)
             {
-                // Prompt the user for a command input.
                 Console.Write("Enter command (increment, decrement, double, randadd, undo): ");
                 string input = Console.ReadLine()?.Trim().ToLower();
-
-                
-
+          
                 Classes.IDecimalProcess command = null;
                 switch (input)
                 {
@@ -77,6 +74,7 @@ namespace CommandProcessor
                         {
                             Classes.IDecimalProcess lastCommand = historyCommand.Pop();
                             lastCommand.undo();
+                            // Output the updated shared number after undoing the command.
                             Console.WriteLine(decimalProcess.funcSharedNumber);
                             continue;
                         }
